@@ -52,7 +52,11 @@ In order to configure Hazelcast as second-level cache provider, you need to add 
 
 And then, we need to configure Hazelcast IMDG local member setting by adding a standard `hazelcast.xml` file into `src/main/resources`.
 
-This will also trigger autoconfiguration of the `HazelcastInstance` bean.
+Keep in mind that this might trigger the autoconfiguration of another Hazelcast member so you might want to disable Hazelcast autoconfiguration:
+
+----
+@SpringBootApplication(exclude = HazelcastAutoConfiguration.class)
+----
 
 The last step involves turning on second-level cache by adding two properties into `application.properties` file:
 
@@ -74,7 +78,6 @@ public class Book { ... }
 
 In this guide, we bootstrapped a Spring Boot application which uses Hazelcast as Hibernate's second-level cache.
 
-We started two application instances, and they built a Hazelcast cluster together. Since the data is shared among Hazelcast cluster instances, we can access it from both of the applications.
 
 == See Also
 
