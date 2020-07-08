@@ -15,9 +15,13 @@ In this guide, you'll see how to quickly set up a Spring Boot application using 
 
 In order to run the code sample, make sure to have PostgresSQL database accessible and configured properly in the `application.properties` file.
 
-Hint: You can spin-up a PostgreSQL instance easily using Docker:
-
-`docker run --name 2lc-postgres --publish 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13`
+[TIP]
+====
+You can spin-up a PostgreSQL instance easily using Docker:
+----
+docker run --name 2lc-postgres --publish 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:13
+----
+====
 
 == Configuration
 
