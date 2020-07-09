@@ -73,6 +73,7 @@ And now, once you annotate your entity as `@Cacheable`, it will be cached in Haz
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Book { ... }
 ----
+When you run the code sample, an object will be saved to database and then will be fetched. In the meantime the object will be stored in the second level cache. `SecondLevelCacheVisualizer` will print out the L2C content in every 10 seconds. The object will be evicted from the L2C after 30 seconds, which is the configured time-to-live seconds in `hazelcast.xml`.
 
 == Summary
 
