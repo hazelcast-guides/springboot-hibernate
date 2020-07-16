@@ -7,6 +7,7 @@
 
 This guide will get you started to use Hazelcast in a Spring Boot application.
 You can see the code sample {github-address}[here].
+
 == What You’ll Learn
 
 In this guide, you'll see how to quickly set up a Spring Boot application using Hazelcast as Hibernate's second-level cache.
