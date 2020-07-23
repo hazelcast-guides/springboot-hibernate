@@ -83,5 +83,7 @@ In this guide, we bootstrapped a Spring Boot application which uses Hazelcast as
 
 == See Also
 
-- https://github.com/hazelcast-guides/caching-springboot-microservices-on-kubernetes[Caching SpringBoot Microservices with Hazelcast in Kubernetes]
-- https://github.com/hazelcast-guides/caching-micronaut-microservices-on-kubernetes[Caching Micronaut Microservices on Kubernetes using Hazelcast]
+- xref:hazelcast-hibernate-jcache-l2c:ROOT:index.adoc[Using JCache for Hibernate L2C]
+- xref:hazelcast-embedded-springboot:ROOT:index.adoc[Hazelcast in SpringBoot]
+- xref:hazelcast-embedded-kubernetes:ROOT:index.adoc[Hazelcast with SpringBoot in Kubernetes]
+
