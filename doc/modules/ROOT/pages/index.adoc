@@ -5,14 +5,16 @@
 
 = Getting Started with Hazelcast and Hibernate Second-Level Cache
 
-This guide will get you started to use Hazelcast in a Spring Boot application.
-You can see the code sample {github-address}[here].
+This guide will get you started to use Hazelcast in a Spring Boot application. You can see the code sample {github-address}[here].
 
 == What You’ll Learn
 
 In this guide, you'll see how to quickly set up a Spring Boot application using Hazelcast as Hibernate's second-level cache.
 
 == Prerequisites
+
+- ~10 minutes
+include::{templates-url}/microservices/prerequisites.adoc[]
 
 In order to run the code sample, make sure to have PostgresSQL database accessible and configured properly in the `application.properties` file.
 
@@ -28,26 +30,28 @@ docker run --name 2lc-postgres --publish 5432:5432 -e POSTGRES_PASSWORD=mysecret
 
 In order to enable JPA, you need to add a dedicated Spring Boot Starter:
 
+[source,xml]
 ----
 <dependency>
-	<groupId>org.springframework.boot</groupId>
-	<artifactId>spring-boot-starter-data-jpa</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
 </dependency>
 ----
 
 In order to configure Hazelcast as second-level cache provider, you need to add two dependencies:
 
+[source,xml]
 ----
 <dependency>
-	<groupId>com.hazelcast</groupId>
-	<artifactId>hazelcast-hibernate53</artifactId>
-	<version>2.0.0</version>
+    <groupId>com.hazelcast</groupId>
+    <artifactId>hazelcast-hibernate53</artifactId>
+    <version>2.0.0</version>
 </dependency
 
 <dependency>
-	<groupId>com.hazelcast</groupId>
-	<artifactId>hazelcast</artifactId>
-	<version>4.0.2</version>
+    <groupId>com.hazelcast</groupId>
+    <artifactId>hazelcast</artifactId>
+    <version>4.0.2</version>
 </dependency>
 ----
 
@@ -55,12 +59,14 @@ And then, we need to configure Hazelcast IMDG local member setting by adding a s
 
 Keep in mind that this might trigger the autoconfiguration of another Hazelcast member so you might want to disable Hazelcast autoconfiguration:
 
+[source,java]
 ----
 @SpringBootApplication(exclude = HazelcastAutoConfiguration.class)
 ----
 
 The last step involves turning on second-level cache by adding two properties into `application.properties` file:
 
+[source,properties]
 ----
 spring.jpa.properties.hibernate.cache.use_second_level_cache=true
 spring.jpa.properties.hibernate.cache.region.factory_class=com.hazelcast.hibernate.HazelcastCacheRegionFactory
@@ -68,13 +74,33 @@ spring.jpa.properties.hibernate.cache.region.factory_class=com.hazelcast.hiberna
 
 And now, once you annotate your entity as `@Cacheable`, it will be cached in Hazelcast member:
 
+[source,java]
 ----
 @Entity
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Book { ... }
 ----
-When you run the code sample, an object will be saved to database and then will be fetched. In the meantime the object will be stored in the second level cache. `SecondLevelCacheVisualizer` will print out the L2C content in every 10 seconds. The object will be evicted from the L2C after 30 seconds, which is the configured time-to-live seconds in `hazelcast.xml`.
+
+== Running the Application
+
+Run the application by executing the following command.
+
+----
+mvn spring-boot:run
+----
+
+You should see in logs that Hazelcast members started successfully.
+
+----
+
+----
+
+What happens then is that an object is saved to the database and then fetched. In the meantime the object is stored in the second level cache. `SecondLevelCacheVisualizer` prints out the L2C content in every 10 seconds. The object is then evicted from the L2C after 30 seconds, which is the configured time-to-live seconds in `hazelcast.xml`.
+
+----
+
+----
 
 == Summary
 
