@@ -77,7 +77,6 @@ And now, once you annotate your entity as `@Cacheable`, it will be cached in Haz
 [source,java]
 ----
 @Entity
-@Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Book { ... }
 ----
