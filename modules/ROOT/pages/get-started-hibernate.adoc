@@ -33,14 +33,14 @@ In order to enable JPA, you need to add a dedicated Spring Boot Starter:
 
 [source,xml,indent=0]
 ----
-include::ROOT:example$pom.xml[tag=spring-boot-starter]
+include::ROOT:example$springboot-hibernate/pom.xml[tag=spring-boot-starter]
 ----
 
 In order to configure Hazelcast as a second-level cache provider, you need to add two dependencies:
 
 [source,xml,indent=0]
 ----
-include::ROOT:example$pom.xml[tags=hazelcast-hibernate;hazelcast-dep]
+include::ROOT:example$springboot-hibernate/pom.xml[tags=hazelcast-hibernate;hazelcast-dep]
 ----
 
 And then, you need to configure the Hazelcast member setting by adding a standard `hazelcast.xml` file into `src/main/resources` directory.
@@ -49,21 +49,21 @@ Keep in mind that this might trigger the autoconfiguration of another Hazelcast 
 
 [source,java,indent=0]
 ----
-include::ROOT:example$src/main/java/com/hazelcast/hibernate/springhibernate2lc/SpringHibernate2lcApplication.java[tag=doc-exclude]
+include::ROOT:example$springboot-hibernate/src/main/java/com/hazelcast/hibernate/springhibernate2lc/SpringHibernate2lcApplication.java[tag=doc-exclude]
 ----
 
 The last step involves turning on second-level cache by adding two properties in the `application.properties` file:
 
 [source,properties]
 ----
-include::ROOT:example$src/main/resources/application.properties[tag=doc-second-level]
+include::ROOT:example$springboot-hibernate/src/main/resources/application.properties[tag=doc-second-level]
 ----
 
 And now, after you annotate your entity as `@Cacheable`, it will be cached in Hazelcast member:
 
 [source,java]
 ----
-include::ROOT:example$src/main/java/com/hazelcast/hibernate/springhibernate2lc/persistence/Book.java[tag=doc-cachable]
+include::ROOT:example$springboot-hibernate/src/main/java/com/hazelcast/hibernate/springhibernate2lc/persistence/Book.java[tag=doc-cachable]
 ----
 
 == Running the Application
