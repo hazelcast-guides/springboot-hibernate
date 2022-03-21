@@ -31,10 +31,12 @@
     </build>
 
 	<dependencies>
+		<!-- tag::spring-boot-starter[] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- end::spring-boot-starter[] -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -47,18 +49,20 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
+		<!-- tag::hazelcast-hibernate[] -->
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast-hibernate53</artifactId>
 			<version>${hazelcast-hibernate.version}</version>
 		</dependency>
-
+		<!-- end::hazelcast-hibernate[] -->
+		<!-- tag::hazelcast-dep[] -->
 		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast</artifactId>
 			<version>${hazelcast.version}</version>
 		</dependency>
+		<!-- end::hazelcast-dep[] -->
 
 		<dependency>
 			<groupId>org.postgresql</groupId>
