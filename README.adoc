@@ -1,1 +1,1 @@
-See the link:https://docs.hazelcast.com/tutorials/get-started-hibernate[tutorial].
+See the link:https://docs.hazelcast.com/tutorials/springboot-hibernate[tutorial].
