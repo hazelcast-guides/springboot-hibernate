@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+// tag::doc-cachable[]
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Book {
+// end::doc-cachable[]
 
     @Id
     @GeneratedValue
